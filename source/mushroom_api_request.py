@@ -174,9 +174,7 @@ details = 'common_names,url,description,edibility,psychoactive,characteristic,im
 
 if __name__ == "__main__":
     
-    AT = "8gTdo55V7Vm2sDN"
-    
-    m = Mushroom_API_Request((51.478, -2.594))
+    m = Mushroom_API_Request((0.0, 0.0))
     m.create_identification("./sample/")
     response = m.retrieve_ID_data(details=details)
     print(json.dumps(response, indent=2))
