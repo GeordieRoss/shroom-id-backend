@@ -1,2 +1,5 @@
-.venv/*
+.venv
 .env
+response.txt
+*.pyc
+.DS_Store
