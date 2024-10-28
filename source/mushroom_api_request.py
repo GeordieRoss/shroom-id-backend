@@ -49,11 +49,11 @@ class Mushroom_API_Request:
                 "longitude": self._longitude_latitude[1]
                 })
         
-        id_url = f'{url}identification'
+        id_url = f'{self.url}identification'
         
         # Make request
         try:
-            response = requests.post(id_url, headers=headers, data=payload)
+            response = requests.post(id_url, headers=self.headers, data=payload)
             response.raise_for_status()
         except requests.HTTPError as ex:
             # possibly check response for a message
@@ -70,9 +70,9 @@ class Mushroom_API_Request:
         
     def retrieve_ID_data(self, details=''):
         print("In function", self._id_access_token)
-        id_url = f'{url}identification/{self._id_access_token}?details={details}'
+        id_url = f'{self.url}identification/{self._id_access_token}?details={details}'
         try:
-            response = requests.get(id_url, headers=headers)
+            response = requests.get(id_url, headers=self.headers)
             response.raise_for_status()
         except requests.HTTPError as ex:
             # possibly check response for a message
@@ -89,10 +89,10 @@ class Mushroom_API_Request:
     
     def search_request(self, query):
         
-        query_url = f'{url}kb/mushroom/name_search?q={query}'
+        query_url = f'{self.url}kb/mushroom/name_search?q={query}'
         
         try:
-            response = requests.get(query_url, headers=headers)
+            response = requests.get(query_url, headers=self.headers)
             response.raise_for_status()
         except requests.HTTPError as ex:
             # possibly check response for a message
@@ -108,9 +108,9 @@ class Mushroom_API_Request:
     
     
     def retrieve_mushroom_detail(self, access_token, details=''):
-        query_url = f'{url}kb/mushroom/{access_token}?details={details}'
+        query_url = f'{self.url}kb/mushroom/{access_token}?details={details}'
         try:
-            response = requests.get(query_url, headers=headers)
+            response = requests.get(query_url, headers=self.headers)
             response.raise_for_status()
         except requests.HTTPError as ex:
             # possibly check response for a message
